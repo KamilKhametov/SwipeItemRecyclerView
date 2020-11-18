@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:swipe="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="80dp">
 
-    <com.daimajia.swipe.SwipeLayout xmlns:swipe="http://schemas.android.com/apk/res-auto"
+    <com.daimajia.swipe.SwipeLayout
         android:id="@+id/swipe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,7 +15,7 @@
             android:id="@+id/go"
             android:layout_width="160dp"
             android:layout_height="match_parent"
-            android:background="#FF5534"
+            android:background="@color/grey"
             android:gravity="center"
             android:tag="Bottom3"
             android:weightSum="10">
@@ -30,7 +31,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="80dp"
             android:background="@drawable/ic_star"
             android:elevation="5dp"
             android:padding="10dp">
@@ -44,7 +45,7 @@
                 android:id="@+id/text_data"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:tag="Hover"/>
+                android:tag="Hover" />
         </LinearLayout>
     </com.daimajia.swipe.SwipeLayout>
 </LinearLayout>

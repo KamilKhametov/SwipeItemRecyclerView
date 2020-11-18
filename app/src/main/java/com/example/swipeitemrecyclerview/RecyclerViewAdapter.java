@@ -21,31 +21,30 @@ import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerSwipeAdapter<RecyclerViewAdapter.SimpleViewHolder> {
 
+    private Context mContext;
+    private List<MyModel> modelList;
+
+    public RecyclerViewAdapter( Context mContext, List<MyModel> modelList ) {
+        this.mContext=mContext;
+        this.modelList=modelList;
+    }
+
+
     public static class SimpleViewHolder extends RecyclerView.ViewHolder {
         SwipeLayout swipeLayout;
         TextView textViewPos;
         TextView textViewData;
-        Button buttonDelete;
+        ImageView imageLike;
 
         public SimpleViewHolder(View itemView) {
             super(itemView);
-            swipeLayout = (SwipeLayout) itemView.findViewById(R.id.swipe);
-            textViewPos = (TextView) itemView.findViewById(R.id.position);
-            textViewData = (TextView) itemView.findViewById(R.id.text_data);
-//            buttonDelete = (Button) itemView.findViewById(R.id.delete);
+            swipeLayout = itemView.findViewById(R.id.swipe);
+            textViewPos = itemView.findViewById(R.id.position);
+            textViewData = itemView.findViewById(R.id.text_data);
+            imageLike = itemView.findViewById ( R.id.trash );
         }
     }
 
-    private Context mContext;
-    private List<MyModel> modelList;
-    private ImageView imageLike;
-
-
-    public RecyclerViewAdapter( Context mContext, List<MyModel> modelList, ImageView imageLike ) {
-        this.mContext=mContext;
-        this.modelList=modelList;
-        this.imageLike = imageLike;
-    }
 
     @Override
     public SimpleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -66,12 +65,12 @@ public class RecyclerViewAdapter extends RecyclerSwipeAdapter<RecyclerViewAdapte
 
             @Override
             public void onOpen(SwipeLayout layout) {
-                imageLike.setImageResource ( R.drawable.ic_like );
+                viewHolder.imageLike.setImageResource ( R.drawable.ic_like );
             }
 
             @Override
             public void onStartClose( SwipeLayout layout ) {
-
+                viewHolder.imageLike.setImageResource ( R.drawable.ic_unlike );
             }
 
             @Override
@@ -90,17 +89,6 @@ public class RecyclerViewAdapter extends RecyclerSwipeAdapter<RecyclerViewAdapte
             }
         });
 
-//        viewHolder.buttonDelete.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                mItemManger.removeShownLayouts(viewHolder.swipeLayout);
-//                modelList.remove(position);
-//                notifyItemRemoved(position);
-//                notifyItemRangeChanged(position, modelList.size());
-//                mItemManger.closeAllItems();
-//                Toast.makeText(view.getContext(), "Deleted " + viewHolder.textViewData.getText().toString() + "!", Toast.LENGTH_SHORT).show();
-//            }
-//        });
         viewHolder.textViewPos.setText((position + 1) + ".");
         viewHolder.textViewData.setText(myModel.name);
         mItemManger.bindView (viewHolder.itemView, position);

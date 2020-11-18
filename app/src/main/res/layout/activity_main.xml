@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <include
-        layout="@layout/ornek1"
+        layout="@layout/only_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
